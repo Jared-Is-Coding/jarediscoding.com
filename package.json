@@ -1,44 +1,43 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "jared-is-coding",
+  "version": "1.0.0",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "jared-is-coding",
+  "author": "Jared H <jared@jarediscoding.com>",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "gatsby": "^5.8.1",
-    "gatsby-plugin-image": "^3.8.0",
-    "gatsby-plugin-manifest": "^5.8.0",
+    "gatsby-plugin-sitemap": "^6.8.0",
     "gatsby-plugin-netlify": "^5.1.0",
-    "gatsby-plugin-sharp": "^5.8.1",
-    "gatsby-source-filesystem": "^5.8.0",
-    "gatsby-transformer-sharp": "^5.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "typescript": "^5.0.4",
+    "prettier": "^2.8.7"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "devDependencies": {
-    "prettier": "^2.8.7"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "0BSD",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
-    "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/Jared-Is-Coding/jarediscoding.com"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/Jared-Is-Coding/jarediscoding.com/issues"
   }
 }
