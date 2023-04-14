@@ -1,4 +1,6 @@
-const config = {
+import type { GatsbyConfig } from "gatsby";
+
+const config: GatsbyConfig = {
     siteMetadata: {
         title: `Jared Is Coding`,
         siteUrl: `https://www.yourdomain.tld`
@@ -12,4 +14,5 @@ const config = {
         "gatsby-plugin-netlify"
     ]
 };
+
 export default config;
