@@ -5,7 +5,7 @@ const config: GatsbyConfig = {
         title: "Jared Is Coding",
         description: "Something",
         image: "/images/icon.png",
-        siteUrl: "http://localhost:8000/"
+        siteUrl: process.env.SITE_URL
     },
     // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
     // If you use VSCode you can also use the GraphQL plugin
