@@ -1,0 +1,99 @@
+/**
+ * ------------------
+ *   Root Variables
+ * ------------------
+ **/
+
+$font-stack: -apple-system, BlinkMacSystemFont, "Open Sans", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+$background-color: #1F2833;
+$highlight-color: #58E6DD;
+
+$border-radius: 5px;
+
+/**
+ * ------------------
+ *       Fonts
+ * ------------------
+ **/
+
+html {
+    font-family: $font-stack;
+}
+
+/**
+ * ------------------
+ *       Colors
+ * ------------------
+ **/
+
+body {
+    background-color: $background-color;
+    color: white;
+}
+
+a {
+    color: $highlight-color;
+}
+
+/**
+ * ------------------
+ *    Page Elements
+ * ------------------
+ **/
+
+html,
+body {
+    margin : 0;
+    padding : 0;
+}
+
+main {
+	height : 100vh;
+	width : 100vw;
+}
+
+/**
+ * ------------------
+ *     Containers
+ * ------------------
+ **/
+
+.flex-col {
+	display : flex;
+	flex-direction : column;
+}
+
+.flex-row {
+	display : flex;
+	flex-direction : row;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-col > * {
+    padding: 5px;
+}
+  
+.col-item {
+}
+  
+.row-item {
+    &:not(:first-child) {
+        margin-left: 15px;
+    }
+}
+
+.card {
+    background-color: rgb(59, 58, 58);
+    padding: 5px;
+    border: 2px solid rgb(73, 72, 72);
+    border-radius: $border-radius;
+}

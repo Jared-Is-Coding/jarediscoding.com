@@ -2,8 +2,10 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
     siteMetadata: {
-        title: `Jared Is Coding`,
-        siteUrl: `https://www.yourdomain.tld`
+        title: "Jared Is Coding",
+        description: "Something",
+        image: "/images/icon.png",
+        siteUrl: "http://localhost:8000/"
     },
     // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
     // If you use VSCode you can also use the GraphQL plugin
@@ -11,7 +13,8 @@ const config: GatsbyConfig = {
     graphqlTypegen: true,
     plugins: [
         "gatsby-plugin-sitemap",
-        "gatsby-plugin-netlify"
+        "gatsby-plugin-netlify",
+        "gatsby-plugin-sass"
     ]
 };
 
