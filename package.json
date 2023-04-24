@@ -17,17 +17,19 @@
   },
   "dependencies": {
     "gatsby": "^5.8.1",
-    "gatsby-plugin-sitemap": "^6.8.0",
     "gatsby-plugin-netlify": "^5.1.0",
+    "gatsby-plugin-sass": "^6.8.0",
+    "gatsby-plugin-sitemap": "^6.8.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.0"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
-    "typescript": "^5.0.4",
-    "prettier": "^2.8.7"
+    "prettier": "^2.8.7",
+    "typescript": "^5.0.4"
   },
   "engines": {
     "node": ">=18.0.0"
