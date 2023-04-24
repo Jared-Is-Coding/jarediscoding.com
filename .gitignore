@@ -57,7 +57,10 @@ typings/
 # gatsby files
 .cache/
 public
-src/gatsby-types.d.ts
+
+# build files
+gatsby-types.d.ts
+*.js
 
 # Mac files
 .DS_Store
