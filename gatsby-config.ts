@@ -6,7 +6,7 @@ dotenv.config()
 const config: GatsbyConfig = {
     siteMetadata: {
         title: "Jared Is Coding",
-        description: "Something",
+        description: "Jared is a software developer creating exceptional digital solutions across web and app platforms",
         image: "/images/icon.png",
         siteUrl: process.env.SITE_URL
     },
