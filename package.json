@@ -1,46 +1,46 @@
 {
-  "name": "jared-is-coding",
-  "version": "1.0.0",
-  "private": true,
-  "description": "jared-is-coding",
-  "author": "Jared H <jared@jarediscoding.com>",
-  "keywords": [
-    "gatsby"
-  ],
-  "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "gatsby": "^5.8.1",
-    "gatsby-plugin-netlify": "^5.1.0",
-    "gatsby-plugin-sass": "^6.8.0",
-    "gatsby-plugin-sitemap": "^6.8.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0",
-    "sass": "^1.62.0"
-  },
-  "devDependencies": {
-    "@types/node": "^18.15.11",
-    "@types/react": "^18.0.33",
-    "@types/react-dom": "^18.0.11",
-    "prettier": "^2.8.7",
-    "typescript": "^5.0.4"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Jared-Is-Coding/jarediscoding.com"
-  },
-  "bugs": {
-    "url": "https://github.com/Jared-Is-Coding/jarediscoding.com/issues"
-  }
+    "name": "jared-is-coding",
+    "version": "1.0.0",
+    "private": true,
+    "description": "jared-is-coding",
+    "author": "Jared H <jared@jarediscoding.com>",
+    "keywords": [
+        "gatsby"
+    ],
+    "scripts": {
+        "develop": "gatsby develop",
+        "start": "gatsby develop",
+        "build": "gatsby build",
+        "serve": "gatsby serve",
+        "clean": "gatsby clean",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "gatsby": "^5.8.1",
+        "gatsby-plugin-netlify": "^5.1.0",
+        "gatsby-plugin-sass": "^6.8.0",
+        "gatsby-plugin-sitemap": "^6.8.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-icons": "^4.8.0",
+        "sass": "^1.62.0"
+    },
+    "devDependencies": {
+        "@types/node": "^18.15.11",
+        "@types/react": "^18.0.33",
+        "@types/react-dom": "^18.0.11",
+        "prettier": "^2.8.7",
+        "typescript": "^5.0.4"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Jared-Is-Coding/jarediscoding.com"
+    },
+    "bugs": {
+        "url": "https://github.com/Jared-Is-Coding/jarediscoding.com/issues"
+    }
 }
