@@ -27,21 +27,23 @@ const IndexPage: React.FC<PageProps> = () => {
     return (
         <>
             <main className="flex-col flex-center">
-                <div className="col-item">
+                <div>
                     <h1>
                         Work in Progress
                     </h1>
                 </div>
-                <div className="col-item">
+
+                <div>
                     <p>In the mean time, here are some of Jared's projects</p>
                 </div>
-                <div className="col-item flex-row">
+
+                <div className="flex-row">
                     {projectData.map((project) => (
                         <div className="row-item card flex-row">
                             {(project.image) &&
                                 <img className="card-image flex-center" src={project.image}></img>
-
                             }
+                            
                             <span className="card-content flex-center">
                                 <Link to={project.url} target={project.target}>
                                     {project.text}
