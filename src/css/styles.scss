@@ -46,11 +46,21 @@ html,
 body {
     margin : 0;
     padding : 0;
+    height: 100%;
+	width : 100%;
 }
 
 main {
-	height : 100vh;
-	width : 100vw;
+	height : 90vh;
+	width : 100%;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 5vh;
+    width: 100%;
 }
 
 /**
@@ -75,10 +85,16 @@ main {
 
 .flex-center {
     justify-content: center;
+    justify-self: center;
     align-items: center;
+    align-self: center;
 }
 
 .flex-col > * {
+    padding: 5px;
+}
+
+.flex-row > * {
     padding: 5px;
 }
   
@@ -91,9 +107,21 @@ main {
     }
 }
 
+.full-height {
+    height: 100%;
+}
+
 .card {
     background-color: rgb(59, 58, 58);
     padding: 5px;
     border: 2px solid rgb(73, 72, 72);
     border-radius: $border-radius;
+}
+
+.card .card-image {
+    height: 2.2em;
+}
+
+.card .card-content {
+    align-self: center;
 }

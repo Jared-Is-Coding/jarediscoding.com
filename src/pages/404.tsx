@@ -1,10 +1,10 @@
 import { HeadFC, Link, PageProps } from "gatsby"
 import * as React from "react"
-import { siteMetaData } from "../components/siteMetaData"
+import { SiteMetaData } from "../components/SiteMetaData"
 import "../css/styles.scss"
 
 export const Head: HeadFC = () => (
-    siteMetaData({title: "404 | Page not found"})
+    <SiteMetaData title="404 | Page not found" />
 )
 
 const headingStyles = {
