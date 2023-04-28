@@ -1,5 +1,5 @@
 import React from "react"
-import { useSiteMetaData } from "../hooks/useSiteMetaData"
+import { useMetaData } from "../hooks/useMetaData"
 
 type searchEngineOptimizationProps = {
     title?: string
@@ -7,8 +7,8 @@ type searchEngineOptimizationProps = {
     image?: string
 }
 
-export const SiteMetaData = ({ title, description, image }: searchEngineOptimizationProps) => {
-    const { title: defaultTitle, description: defaultDescription, image: defaultImage, siteUrl } = useSiteMetaData()
+export const MetaData = ({ title, description, image }: searchEngineOptimizationProps) => {
+    const { title: defaultTitle, description: defaultDescription, image: defaultImage, siteUrl } = useMetaData()
 
     return (
         <>
