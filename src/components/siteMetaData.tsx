@@ -7,7 +7,7 @@ type searchEngineOptimizationProps = {
     image?: string
 }
 
-export const siteMetaData = ({ title, description, image }: searchEngineOptimizationProps) => {
+export const SiteMetaData = ({ title, description, image }: searchEngineOptimizationProps) => {
     const { title: defaultTitle, description: defaultDescription, image: defaultImage, siteUrl } = useSiteMetaData()
 
     return (
