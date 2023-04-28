@@ -12,12 +12,16 @@ const projectData = [
     {
         text: "Elemental Bot for Discord",
         image: "/images/projects/elemental/icon.png",
+        imageTitle: "Elemental Logo",
+        imageAlt: "Logo icon for the Elemental Bot on Discord",
         url: "https://elementalbot.com/",
         target: "_blank"
     },
     {
         text: "JaredIsCoding.com",
         image: "/images/icon.png",
+        imageTitle: "Website Logo",
+        imageAlt: "Logo icon for jarediscoding.com",
         url: "https://JaredIsCoding.com/",
         target: "_self"
     }
@@ -41,7 +45,7 @@ const IndexPage: React.FC<PageProps> = () => {
                     {projectData.map((project) => (
                         <div className="row-item card flex-row">
                             {(project.image) &&
-                                <img className="card-image flex-center" src={project.image}></img>
+                                <img className="card-image flex-center" src={project.image} title={project.imageTitle} alt={project.imageAlt}></img>
                             }
                             
                             <span className="card-content flex-center">
