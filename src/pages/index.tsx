@@ -24,6 +24,14 @@ const projectData = [
         imageAlt: "Logo icon for jarediscoding.com",
         url: "https://JaredIsCoding.com/",
         target: "_self"
+    },
+    {
+        text: "CherryParkBand.com",
+        image: "/images/icon.png",
+        imageTitle: "Website Logo",
+        imageAlt: "Logo icon for cherryparkband.com",
+        url: "https://CherryParkBand.com/",
+        target: "_self"
     }
 ]
 
