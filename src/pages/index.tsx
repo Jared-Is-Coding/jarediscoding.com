@@ -41,12 +41,12 @@ const IndexPage: React.FC<PageProps> = () => {
             <main className="flex-col flex-center">
                 <div>
                     <h1>
-                        Work in Progress
+                        Jared is Coding
                     </h1>
                 </div>
 
                 <div>
-                    <p>In the mean time, here are some of Jared's projects</p>
+                    <p>This site is a work in progress. In the mean time, here are some of Jared's projects:</p>
                 </div>
 
                 <div className="flex-row">
