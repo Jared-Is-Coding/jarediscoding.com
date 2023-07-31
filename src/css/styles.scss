@@ -88,6 +88,7 @@ footer {
     justify-self: center;
     align-items: center;
     align-self: center;
+    text-align: center;
 }
 
 .flex-col > * {
@@ -102,6 +103,8 @@ footer {
     &:not(:first-child) {
         margin-left: 15px;
     }
+
+    margin-bottom: 15px;
 }
 
 .full-height {

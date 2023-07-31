@@ -11,7 +11,7 @@ export const Head: HeadFC = () => (
 const projectData = [
     {
         text: "Elemental Bot for Discord",
-        image: "/images/projects/elemental/icon.png",
+        image: "/images/projects/elementalbot.com/icon.png",
         imageTitle: "Elemental Logo",
         imageAlt: "Logo icon for the Elemental Bot on Discord",
         url: "https://elementalbot.com/",
@@ -27,11 +27,11 @@ const projectData = [
     },
     {
         text: "CherryParkBand.com",
-        image: "/images/icon.png",
+        image: "/images/projects/cherryparkband.com/icon.png",
         imageTitle: "Website Logo",
         imageAlt: "Logo icon for cherryparkband.com",
         url: "https://CherryParkBand.com/",
-        target: "_self"
+        target: "_blank"
     }
 ]
 
@@ -49,9 +49,9 @@ const IndexPage: React.FC<PageProps> = () => {
                     <p>This site is a work in progress. In the mean time, here are some of Jared's projects:</p>
                 </div>
 
-                <div className="flex-row">
+                <div className="flex-row flex-wrap flex-center">
                     {projectData.map((project) => (
-                        <div className="row-item card flex-row">
+                        <div className="row-item card flex-row ">
                             {(project.image) &&
                                 <img className="card-image flex-center" src={project.image} title={project.imageTitle} alt={project.imageAlt}></img>
                             }
