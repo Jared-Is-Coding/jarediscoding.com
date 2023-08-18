@@ -1,4 +1,4 @@
-import { Link, type HeadFC, type PageProps } from "gatsby"
+import { type HeadFC, type PageProps } from "gatsby"
 import * as React from "react"
 import { MetaData } from "../components/MetaData"
 import { StickyFooter } from "../components/StickyFooter"
@@ -39,27 +39,27 @@ const IndexPage: React.FC<PageProps> = () => {
     return (
         <>
             <main className="flex-col flex-center">
-                <div>
+                <div className="col-item">
                     <h1>
                         Jared is Coding
                     </h1>
                 </div>
 
-                <div>
+                <div className="col-item">
                     <p>This site is a work in progress. In the mean time, here are some of Jared's projects:</p>
                 </div>
 
-                <div className="flex-row flex-wrap flex-center">
+                <div className="flex-col">
                     {projectData.map((project) => (
-                        <div className="row-item card flex-row ">
+                        <div className="col-item flex-row flex-center card">
                             {(project.image) &&
                                 <img className="card-image flex-center" src={project.image} title={project.imageTitle} alt={project.imageAlt}></img>
                             }
                             
                             <span className="card-content flex-center">
-                                <Link to={project.url} target={project.target}>
+                                <a href={project.url} target={project.target}>
                                     {project.text}
-                                </Link>
+                                </a>
                             </span>
                         </div>
                     ))}

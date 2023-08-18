@@ -5,11 +5,12 @@
  **/
 
 $font-stack: -apple-system, BlinkMacSystemFont, "Open Sans", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+$font-size: calc(14px + 0.390625vw);
 
 $background-color: #1F2833;
 $highlight-color: #58E6DD;
 
-$border-radius: 5px;
+$border-radius: 12px;
 
 /**
  * ------------------
@@ -19,6 +20,7 @@ $border-radius: 5px;
 
 html {
     font-family: $font-stack;
+    font-size: $font-size;
 }
 
 /**
@@ -38,29 +40,58 @@ a {
 
 /**
  * ------------------
+ *         Res
+ * ------------------
+ **/
+
+/* Small screens */
+@media screen and (max-width: 767px) {
+    .hide-on-small {
+        display: none;
+    }
+}
+
+/**
+ * ------------------
  *    Page Elements
  * ------------------
  **/
 
 html,
-body {
+body,
+main,
+header,
+footer,
+#___gatsby,
+#gatsby-focus-wrapper {
     margin : 0;
     padding : 0;
-    height: 100%;
 	width : 100%;
+    overflow-x: hidden;
 }
 
-main {
-	height : 90vh;
-	width : 100%;
+header {
+    height: 15.2vh;
+    padding-top: 2%;
+    padding-bottom: 0.2vh;
+    overflow: hidden;
+}
+
+h1:after {
+    content: ' ';
+    display: block;
+    border: solid 2px white;
+    margin-top: 25px;
+}
+
+h2 {
+    text-transform: uppercase;
 }
 
 footer {
-    position: absolute;
-    left: 0;
-    bottom: 5%;
-    height: 5vh;
-    width: 100%;
+    height: 10%;
+    margin-top: calc(20px + 1.2vh);
+    margin-bottom: 2%;
 }
 
 /**
@@ -84,6 +115,7 @@ footer {
 }
 
 .flex-center {
+    display: flex;
     justify-content: center;
     justify-self: center;
     align-items: center;
@@ -101,15 +133,29 @@ footer {
   
 .row-item {
     &:not(:first-child) {
+        display: flex;
         margin-left: 15px;
     }
 
     margin-bottom: 15px;
 }
+  
+.col-item {
+    &:not(:first-child) {
+        display: flex;
+        margin-top: 15px;
+    }
+}
 
 .full-height {
     height: 100%;
 }
+
+/**
+ * ------------------
+ *     Cards
+ * ------------------
+ **/
 
 .card {
     background-color: rgb(59, 58, 58);
@@ -120,6 +166,16 @@ footer {
 
 .card .card-image {
     height: 2.2em;
+}
+
+.card .card-image.png {
+    background-color: white;
+    border-radius: $border-radius;
+}
+
+.card .card-text {
+    padding: 0;
+    margin: 0;
 }
 
 .card .card-content {
