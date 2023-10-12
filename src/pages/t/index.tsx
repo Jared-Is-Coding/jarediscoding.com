@@ -1,12 +1,11 @@
 import { type HeadFC, type PageProps } from "gatsby"
 import * as React from "react"
 import { MetaData } from "../../components/MetaData"
-import { PsiCalc } from "../../components/PsiCalc"
 import "../../css/styles.scss"
 
 
 export const Head: HeadFC = () => (
-    <MetaData title="Tools" />
+    <MetaData title="Tools | Jared is Coding" />
 )
 
 const IndexPage: React.FC<PageProps> = () => {

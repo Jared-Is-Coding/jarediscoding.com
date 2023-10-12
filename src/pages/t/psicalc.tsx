@@ -6,7 +6,7 @@ import "../../css/styles.scss"
 
 
 export const Head: HeadFC = () => (
-    <MetaData title="OneWheel Tire Pressure Calculator" />
+    <MetaData title="OneWheel Tire Pressure Calculator | Tools | Jared is Coding" />
 )
 
 const IndexPage: React.FC<PageProps> = () => {

@@ -7,7 +7,7 @@ const config: GatsbyConfig = {
     siteMetadata: {
         title: "Jared Is Coding",
         description: "Jared is a software developer creating exceptional digital solutions across web and app platforms",
-        image: "/images/icon.png",
+        image: "/images/favicon.ico",
         siteUrl: process.env.SITE_URL
     },
     // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
