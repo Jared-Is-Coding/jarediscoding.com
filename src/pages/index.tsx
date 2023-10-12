@@ -50,8 +50,8 @@ const IndexPage: React.FC<PageProps> = () => {
                 </div>
 
                 <div className="flex-col">
-                    {projectData.map((project) => (
-                        <div className="col-item flex-row flex-center card">
+                    {projectData.map((project, index) => (
+                        <div key={`project-data-item-${index}`} className="col-item flex-row flex-center card">
                             {(project.image) &&
                                 <img className="card-image flex-center" src={project.image} title={project.imageTitle} alt={project.imageAlt}></img>
                             }
