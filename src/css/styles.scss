@@ -4,13 +4,15 @@
  * ------------------
  **/
 
-$font-stack: -apple-system, BlinkMacSystemFont, "Open Sans", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-$font-size: calc(14px + 0.390625vw);
+$root-font-family: -apple-system, BlinkMacSystemFont, "Open Sans", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+$site-font-size: calc(14px + 0.390625vw);
+$h1-font-size: 200%;
+$h2-font-size: 160%;
 
-$background-color: #1F2833;
-$highlight-color: #58E6DD;
+$primary-color: #1F2833;
+$secondary-color: #58E6DD;
 
-$border-radius: 12px;
+$card-border-radius: 12px;
 
 /**
  * ------------------
@@ -18,9 +20,26 @@ $border-radius: 12px;
  * ------------------
  **/
 
-html {
-    font-family: $font-stack;
-    font-size: $font-size;
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    font-family: $root-font-family !important;
+    font-size: $site-font-size !important;
+}
+
+h1 {
+    font-size: $h1-font-size !important;
+}
+
+h2 {
+    font-size: $h2-font-size !important;
 }
 
 /**
@@ -30,12 +49,12 @@ html {
  **/
 
 body {
-    background-color: $background-color;
+    background-color: $primary-color;
     color: white;
 }
 
 a {
-    color: $highlight-color;
+    color: $secondary-color;
 }
 
 /**
@@ -161,7 +180,7 @@ footer {
     background-color: rgb(59, 58, 58);
     padding: 5px;
     border: 2px solid rgb(73, 72, 72);
-    border-radius: $border-radius;
+    border-radius: $card-border-radius;
 }
 
 .card .card-image {
@@ -170,7 +189,7 @@ footer {
 
 .card .card-image.png {
     background-color: white;
-    border-radius: $border-radius;
+    border-radius: $card-border-radius;
 }
 
 .card .card-text {
