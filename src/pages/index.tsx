@@ -6,7 +6,10 @@ import { SiteFooter } from "../components/SiteFooter"
 import "../css/styles.scss"
 
 export const Head: HeadFC = () => (
-    <MetaData />
+    <>
+        <html lang="en" />
+        <MetaData />
+    </>
 )
 
 const personalProjectData: projectData[] = [

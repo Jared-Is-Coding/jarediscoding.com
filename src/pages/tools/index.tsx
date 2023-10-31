@@ -6,7 +6,10 @@ import "../../css/styles.scss"
 
 
 export const Head: HeadFC = () => (
-    <MetaData title="Tools | Jared is Coding" />
+    <>
+        <html lang="en" />
+        <MetaData title="Tools | Jared is Coding" />
+    </>
 )
 
 const IndexPage: React.FC<PageProps> = () => {

@@ -4,7 +4,10 @@ import { MetaData } from "../components/MetaData"
 import "../css/styles.scss"
 
 export const Head: HeadFC = () => (
-    <MetaData title="404 | Jared is Coding" />
+    <>
+        <html lang="en" />
+        <MetaData title="404 | Jared is Coding" />
+    </>
 )
 
 const NotFoundPage: React.FC<PageProps> = () => {

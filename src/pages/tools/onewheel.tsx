@@ -8,7 +8,10 @@ import "../../css/styles.scss"
 
 
 export const Head: HeadFC = () => (
-    <MetaData title="OneWheel Tools | Tools | Jared is Coding" />
+    <>
+        <html lang="en" />
+        <MetaData title="OneWheel Tools | Tools | Jared is Coding" />
+    </>
 )
 
 const IndexPage: React.FC<PageProps> = () => {
