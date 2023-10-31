@@ -35,7 +35,9 @@ export class VoltageCalc extends Component {
         60.50,
         61.00,
         61.50,
-        62.00
+        62.00,
+        62.50,
+        63.00
     ]
 
     setVoltage = (e: ChangeEvent<HTMLInputElement> | number) => {
