@@ -1,5 +1,6 @@
 import { type HeadFC, type PageProps } from "gatsby"
 import * as React from "react"
+import { Col, Container, Row } from "react-bootstrap"
 import { MetaData } from "../../components/MetaData"
 import { PsiCalc } from "../../components/PsiCalc"
 import { VoltageCalc } from "../../components/VoltageCalc"
@@ -13,27 +14,40 @@ export const Head: HeadFC = () => (
 const IndexPage: React.FC<PageProps> = () => {
     return (
         <>
-            <main className="flex-col flex-center">
-                <div>
-                    <h1>
+            <main>
+                <Container>
+                    <h1 className="flex-center">
                         OneWheel Tools
                     </h1>
-                    <p><a href="/t">ᐊ Tools</a></p>
-                </div>
 
-                <div className="flex-col card half-width">
-                    <h2>
-                        Battery Voltage to %
-                    </h2>
-                    <VoltageCalc />
-                </div>
+                    <p className="flex-center">
+                        <a href="/t">ᐊ Tools</a>
+                    </p>
 
-                <div className="flex-col card half-width">
-                    <h2>
-                        PSI Suggestion
-                    </h2>
-                    <PsiCalc />
-                </div>
+                    <Row>
+                        <Col xs={{span: 12}} md={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
+                            <div className="flex-center flex-col card">
+                                <h2>
+                                    Battery Voltage to %
+                                </h2>
+                                
+                                <VoltageCalc />
+                            </div>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col xs={{span: 12}} md={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
+                            <div className="flex-center flex-col card">
+                                <h2>
+                                    PSI Suggestion
+                                </h2>
+                                
+                                <PsiCalc />
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
             </main>
         </>
     )

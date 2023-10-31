@@ -1,5 +1,6 @@
 import { type HeadFC, type PageProps } from "gatsby"
 import * as React from "react"
+import { Container } from "react-bootstrap"
 import { MetaData } from "../../components/MetaData"
 import "../../css/styles.scss"
 
@@ -11,17 +12,22 @@ export const Head: HeadFC = () => (
 const IndexPage: React.FC<PageProps> = () => {
     return (
         <>
-            <main className="flex-col flex-center">
-                <div>
-                    <h1>
+            <main>
+                <Container>
+                    <h1 className="flex-center">
                         Tools
                     </h1>
-                    <p><a href="/">ᐊ Home</a></p>
-                </div>
 
-                <div className="flex-col card">
-                    <a href="onewheel">OneWheel Tools</a>
-                </div>
+                    <p className="flex-center">
+                        <a href="/">ᐊ Home</a>
+                    </p>
+
+                    <div className="flex-center">
+                        <div className="flex-col card">
+                            <a href="onewheel">OneWheel Tools</a>
+                        </div>
+                    </div>
+                </Container>
             </main>
         </>
     )

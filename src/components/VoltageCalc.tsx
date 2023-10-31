@@ -1,4 +1,5 @@
 import React, { ChangeEvent, Component } from "react"
+import { Container } from "react-bootstrap"
 
 export class VoltageCalc extends Component {
     state = {
@@ -63,19 +64,21 @@ export class VoltageCalc extends Component {
     render() {
         return (
             <>
+                <label>Voltage</label>
+                <input className="half-width" key="voltage" type="number" step={0.01} value={this.state.voltage} onChange={e => this.setVoltage(e)}></input>
+
                 <label>Quick Values</label>
                 <div className="flex-row flex-center">
                     {this.quickVoltages.map((v) => (
-                        <button onClick={e => this.setVoltage(v)}>{Math.round(v)}V</button>
+                        <button className="padded" onClick={e => this.setVoltage(v)}>{Math.round(v)}V</button>
                     ))}
                 </div>
 
-                <label>Voltage</label>
-                <input key="voltage" type="number" step={0.01} value={this.state.voltage} onChange={e => this.setVoltage(e)}></input>
-
-                <p key="voltageResult">{this.state.result}</p>
-
-                <i>Formula written by <a href="https://github.com/biell" target="_blank">biell</a></i>
+                <label>Result</label>
+                <code key="voltageResult">{this.state.result}</code>
+                
+                <br />
+                <i>Formula by <a href="https://github.com/biell" target="_blank">biell</a></i>
             </>
         )
     }

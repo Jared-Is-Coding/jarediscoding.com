@@ -1,0 +1,23 @@
+/**
+ * ------------------
+ *       Colors
+ * ------------------
+ **/
+
+body {
+    background-color: $primary-color !important;
+    color: $tertiary-color !important;
+}
+
+a:not(.card-text a) {
+    color: $secondary-color !important;
+}
+
+.card {
+    color: $tertiary-color !important;
+}
+
+code {
+    color: $tertiary-color !important;
+    background-color: darkslategray !important;
+}

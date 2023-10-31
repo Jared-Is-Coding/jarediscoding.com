@@ -5,17 +5,36 @@ export class PsiCalc extends Component {
         weight: 150,
         terrain: "road",
         tire: "slick",
-        result: "Suggested: 15 psi"
+        result: "15 psi"
     }
 
-    setWeight = (e: ChangeEvent<HTMLInputElement>) => {
-        if (!e.target.value) return
+    quickWeights = [
+        120,
+        130,
+        140,
+        150,
+        160,
+        170,
+        180,
+        190,
+        200,
+        210,
+        220,
+        230
+    ]
 
-        const value = e.target.value ? parseInt(e.target.value) : 0
+    setWeight = (e: ChangeEvent<HTMLInputElement> | number) => {
+        if (!e || (typeof e !== "number" && !e.target.value)) return
 
-        if (this.state.weight != value) {
-            this.setState({ weight: value }, this.doCalculation)
-        }
+        const value = typeof e === "number"
+            ? e
+            : e.target.value 
+                ? parseInt(e.target.value)
+                : 0
+
+        if (this.state.weight == value) return
+        
+        this.setState({ weight: value }, this.doCalculation)
     }
 
     setTerrain = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -42,28 +61,36 @@ export class PsiCalc extends Component {
         )
         const minMaxPsi = Math.max(Math.min(calcPsi, 25), 13)
 
-        this.setState({ result: `Suggested: ${Math.round(minMaxPsi)} psi` })
+        this.setState({ result: `${Math.round(minMaxPsi)} psi` })
     }
 
     render() {
         return (
             <>
                 <label>Weight</label>
-                <input key="psiWeight" type="number" min={100} max={250} step={1} value={this.state.weight} onChange={e => this.setWeight(e)}></input>
+                <input className="half-width" key="psiWeight" type="number" min={100} max={250} step={1} value={this.state.weight} onChange={e => this.setWeight(e)}></input>
+
+                <label>Quick Weights</label>
+                <div className="flex-row flex-center">
+                    {this.quickWeights.map((v) => (
+                        <button className="padded" onClick={e => this.setWeight(v)}>{v}lbs</button>
+                    ))}
+                </div>
 
                 <label>Terrain</label>
-                <select key="psiTerrain" value={this.state.terrain} onChange={e => this.setTerrain(e)}>
+                <select className="half-width" key="psiTerrain" value={this.state.terrain} onChange={e => this.setTerrain(e)}>
                     <option value="road">Road</option>
                     <option value="trail">Trail</option>
                 </select>
 
                 <label>Tire</label>
-                <select key="psiTire" value={this.state.tire} onChange={e => this.setTire(e)}>
+                <select className="half-width" key="psiTire" value={this.state.tire} onChange={e => this.setTire(e)}>
                     <option value="slick">Slick</option>
                     <option value="treaded">Treaded</option>
                 </select>
                 
-                <p key="psiResult">{this.state.result}</p>
+                <label>Result</label>
+                <code key="psiResult">{this.state.result}</code>
             </>
         )
     }

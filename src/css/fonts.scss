@@ -1,0 +1,38 @@
+/**
+ * ------------------
+ *       Fonts
+ * ------------------
+ **/
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    font-family: $root-font-family !important;
+    font-size: $site-font-size !important;
+}
+
+h1 {
+    font-size: $h1-font-size !important;
+}
+
+h2 {
+    font-size: $h2-font-size !important;
+}
+
+
+/**
+ * ------------------
+ *       Sizing
+ * ------------------
+ **/
+
+h1 {
+    padding-top: 50px;
+}

@@ -1,61 +1,6 @@
-/**
- * ------------------
- *   Root Variables
- * ------------------
- **/
-
-$root-font-family: -apple-system, BlinkMacSystemFont, "Open Sans", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-$site-font-size: calc(14px + 0.390625vw);
-$h1-font-size: 200%;
-$h2-font-size: 160%;
-
-$primary-color: #1F2833;
-$secondary-color: #58E6DD;
-
-$card-border-radius: 12px;
-
-/**
- * ------------------
- *       Fonts
- * ------------------
- **/
-
-html,
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a {
-    font-family: $root-font-family !important;
-    font-size: $site-font-size !important;
-}
-
-h1 {
-    font-size: $h1-font-size !important;
-}
-
-h2 {
-    font-size: $h2-font-size !important;
-}
-
-/**
- * ------------------
- *       Colors
- * ------------------
- **/
-
-body {
-    background-color: $primary-color;
-    color: white;
-}
-
-a {
-    color: $secondary-color;
-}
+@import "./variables.scss";
+@import "./fonts.scss";
+@import "./colors.scss";
 
 /**
  * ------------------
@@ -115,13 +60,6 @@ header {
     overflow: hidden;
 }
 
-h1:after {
-    content: ' ';
-    display: block;
-    border: solid 2px white;
-    margin-top: 25px;
-}
-
 h2 {
     text-transform: uppercase;
 }
@@ -132,12 +70,25 @@ footer {
     margin-bottom: 2%;
 }
 
-buton {
-    padding: 5px;
+button.padded {
+    /* Small screens */
+    @media screen and (max-width: 767px) {
+        padding: 20px !important;
+    }
+
+    /* Large screens */
+    @media screen and (min-width: 768px) {
+        padding: 15px !important;
+    }
 }
 
 label {
-    margin-top: 5px;
+    margin-top: 15px;
+}
+
+code {
+    padding: 5px;
+    border-radius: $code-border-radius;
 }
 
 /**
@@ -178,23 +129,11 @@ label {
     text-align: center;
 }
 
-.flex-col > * {
+.row > * {
     padding: 5px;
 
-    &.card {
+    .card {
         margin-bottom: 15px;
-    }
-}
-
-.flex-row > * {
-    padding: 5px;
-}
-  
-.row-item {
-    margin-bottom: 15px;
-    
-    &:not(:first-child) {
-        margin-left: 15px;
     }
 }
 
@@ -209,14 +148,15 @@ label {
  **/
 
 .card {
-    background-color: rgb(59, 58, 58);
     padding: 5px;
+    background-color: rgb(59, 58, 58) !important;
     border: 2px solid rgb(73, 72, 72);
     border-radius: $card-border-radius;
 }
 
 .card .card-image {
     height: 2.2em;
+    margin-right: 15px;
 }
 
 .card .card-image.png {
