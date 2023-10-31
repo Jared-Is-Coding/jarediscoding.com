@@ -1,0 +1,13 @@
+.form-range::-webkit-slider-thumb {
+    height: 25px;
+    width: 25px;
+    margin-top: -7px;
+    background-color: $secondary-color;
+}
+
+.form-range::-moz-slider-thumb {
+    height: 25px;
+    width: 25px;
+    margin-top: -7px;
+    background-color: $secondary-color;
+}

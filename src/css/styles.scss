@@ -1,6 +1,7 @@
 @import "./variables.scss";
 @import "./fonts.scss";
 @import "./colors.scss";
+@import "./forms.scss";
 
 /**
  * ------------------
@@ -89,6 +90,7 @@ label {
 code {
     padding: 5px;
     border-radius: $code-border-radius;
+    font-weight: bold;
 }
 
 /**

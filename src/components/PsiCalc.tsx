@@ -1,8 +1,9 @@
 import React, { ChangeEvent, Component } from "react"
+import FormRange from "react-bootstrap/FormRange"
 
 export class PsiCalc extends Component {
     state = {
-        weight: 150,
+        weight: 165,
         terrain: "road",
         tire: "slick",
         result: "15 psi"
@@ -20,7 +21,8 @@ export class PsiCalc extends Component {
         200,
         210,
         220,
-        230
+        230,
+        240
     ]
 
     setWeight = (e: ChangeEvent<HTMLInputElement> | number) => {
@@ -67,16 +69,9 @@ export class PsiCalc extends Component {
     render() {
         return (
             <>
-                <label>Weight</label>
-                <input className="half-width" key="psiWeight" type="number" min={100} max={250} step={1} value={this.state.weight} onChange={e => this.setWeight(e)}></input>
-
-                <label>Quick Weights</label>
-                <div className="flex-row flex-center">
-                    {this.quickWeights.map((v) => (
-                        <button className="padded" onClick={e => this.setWeight(v)}>{v}lbs</button>
-                    ))}
-                </div>
-
+                <label>Result</label>
+                <code key="psiResult">{this.state.result}</code>
+                
                 <label>Terrain</label>
                 <select className="half-width" key="psiTerrain" value={this.state.terrain} onChange={e => this.setTerrain(e)}>
                     <option value="road">Road</option>
@@ -88,9 +83,17 @@ export class PsiCalc extends Component {
                     <option value="slick">Slick</option>
                     <option value="treaded">Treaded</option>
                 </select>
-                
-                <label>Result</label>
-                <code key="psiResult">{this.state.result}</code>
+
+                <label>Weight</label>
+                <input className="half-width" key="psiWeight" type="number" min={100} max={250} step={1} value={this.state.weight} onChange={e => this.setWeight(e)}></input>
+                <FormRange className="half-width" key="psiWeightSlider" step="5" value={this.state.weight} min={this.quickWeights.at(0)} max={this.quickWeights.at(this.quickWeights.length - 1)} onChange={e => this.setWeight(e)}></FormRange>
+
+                <label>Quick Weights</label>
+                <div className="flex-row flex-center">
+                    {this.quickWeights.map((v) => (
+                        <button className="padded" onClick={e => this.setWeight(v)}>{v}lbs</button>
+                    ))}
+                </div>
             </>
         )
     }
