@@ -31,7 +31,7 @@ const personalProjectData: projectData[] = [
         image: "/images/icon.png",
         imageTitle: "Website Logo",
         imageAlt: "Logo icon for jarediscoding.com",
-        url: ["/", "/t/"],
+        url: ["/", "/tools/"],
         target: "_self"
     }
 ]

@@ -1,4 +1,4 @@
-import { type HeadFC, type PageProps } from "gatsby"
+import { Link, type HeadFC, type PageProps } from "gatsby"
 import * as React from "react"
 import { Col, Container, Row } from "react-bootstrap"
 import { MetaData } from "../../components/MetaData"
@@ -21,7 +21,7 @@ const IndexPage: React.FC<PageProps> = () => {
                     </h1>
 
                     <p className="flex-center">
-                        <a href="/t">ᐊ Tools</a>
+                        <Link to="/tools/">ᐊ Tools</Link>
                     </p>
 
                     <Row>
