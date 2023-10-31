@@ -1,5 +1,5 @@
-import type { GatsbyConfig } from "gatsby";
-import * as dotenv from "dotenv";
+import type { GatsbyConfig } from "gatsby"
+import * as dotenv from "dotenv"
 
 dotenv.config()
 
@@ -19,6 +19,6 @@ const config: GatsbyConfig = {
         "gatsby-plugin-netlify",
         "gatsby-plugin-sass"
     ]
-};
+}
 
-export default config;
+export default config
