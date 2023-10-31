@@ -16,22 +16,22 @@
     }
 
     .full-width {
-        width: 100%;
+        width: 100% !important;
     }
     
     .half-width {
-        width: 80%;
+        width: 80% !important;
     }
 }
 
 /* Large screens */
 @media screen and (min-width: 768px) {
     .full-width {
-        width: 100%;
+        width: 100% !important;
     }
     
     .half-width {
-        width: 50%;
+        width: 50% !important;
     }
 }
 
