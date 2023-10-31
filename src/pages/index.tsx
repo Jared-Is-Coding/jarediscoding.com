@@ -39,19 +39,16 @@ const IndexPage: React.FC<PageProps> = () => {
     return (
         <>
             <main className="flex-col flex-center">
-                <div className="col-item">
+                <div>
                     <h1>
                         Jared is Coding
                     </h1>
-                </div>
-
-                <div className="col-item">
                     <p>This site is a work in progress. In the mean time, here are some of Jared's projects:</p>
                 </div>
 
                 <div className="flex-col">
                     {projectData.map((project, index) => (
-                        <div key={`project-data-item-${index}`} className="col-item flex-row flex-center card">
+                        <div key={`project-data-item-${index}`} className="flex-row flex-center card">
                             {(project.image) &&
                                 <img className="card-image flex-center" src={project.image} title={project.imageTitle} alt={project.imageAlt}></img>
                             }

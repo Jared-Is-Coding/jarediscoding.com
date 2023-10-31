@@ -12,15 +12,15 @@ const IndexPage: React.FC<PageProps> = () => {
     return (
         <>
             <main className="flex-col flex-center">
-                <div className="col-item">
+                <div>
                     <h1>
                         Tools
                     </h1>
                     <p><a href="/">ᐊ Home</a></p>
                 </div>
 
-                <div className="flex-col">
-                    <a href="psicalc">OneWheel PSI Calculator</a>
+                <div className="flex-col card">
+                    <a href="onewheel">OneWheel Tools</a>
                 </div>
             </main>
         </>
