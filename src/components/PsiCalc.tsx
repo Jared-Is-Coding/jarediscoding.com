@@ -21,8 +21,7 @@ export class PsiCalc extends Component {
         200,
         210,
         220,
-        230,
-        240
+        230
     ]
 
     setWeight = (e: ChangeEvent<HTMLInputElement> | number) => {
