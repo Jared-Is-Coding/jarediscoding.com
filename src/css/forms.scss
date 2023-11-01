@@ -1,13 +1,17 @@
+.form-range {
+    margin-top: 10px;
+}
+
 .form-range::-webkit-slider-thumb {
-    height: 25px !important;
-    width: 25px !important;
-    margin-top: -7px !important;
+    height: 35px !important;
+    width: 35px !important;
+    margin-top: -12px !important;
     background-color: $secondary-color !important;
 }
 
 .form-range::-moz-slider-thumb {
-    height: 25px !important;
-    width: 25px !important;
-    margin-top: -7px !important;
+    height: 35px !important;
+    width: 35px !important;
+    margin-top: -12px !important;
     background-color: $secondary-color !important;
 }

@@ -50,27 +50,39 @@ const professionalProjectData: projectData[] = [
     }
 ]
 
+// TODO | This needs some cleanup
+type projectDataUrlProps = {
+    url: string
+    urlIndex: number
+    project: projectData
+}
+
+// TODO | This needs some cleanup
+const ProjectDataUrl = ({url, urlIndex, project}: projectDataUrlProps) => {
+    return (
+        <>
+            {urlIndex > 0 && <i> | </i>}
+            <a href={url} target={project.target}>
+                {project.text[urlIndex]}
+            </a>
+        </>
+    )
+}
+
+// TODO | This needs some cleanup
 const mapProjectData = (project: projectData, index: number) => (
-    <>
-        <div key={`project-data-item-${index}`} className="flex-row flex-center card">
-            {(project.image) &&
-                <img className="card-image flex-center" src={project.image} title={project.imageTitle} alt={project.imageAlt}></img>
-            }
-            
-            <span className="card-content flex-center">
-                {project.url.map((url, urlIndex) => (
-                    <>
-                        {urlIndex >= 1 && 
-                            <b> | </b>
-                        }
-                        <a key={`project-data-item-url-${index}`} href={url} target={project.target}>
-                            {project.text[urlIndex]}
-                        </a>
-                    </>
-                ))}
-            </span>
-        </div>
-    </>
+    <div key={`project-${project.text.at(0)}-${index}`} className="flex-row flex-center card">
+        {(project.image) &&
+            <img key={`project-${project.text.at(0)}-${index}-image`} className="card-image flex-center" src={project.image} title={project.imageTitle} alt={project.imageAlt}></img>
+        }
+        
+        <span className="card-content">
+            {project.url.map((url, urlIndex) => (
+                // TODO | This needs some cleanup
+                <ProjectDataUrl url={url} urlIndex={urlIndex} project={project} key={`project-${project.text.at(0)}-${index}-content-${url}`} />
+            ))}
+        </span>
+    </div>
 )
 
 const IndexPage: React.FC<PageProps> = () => {
