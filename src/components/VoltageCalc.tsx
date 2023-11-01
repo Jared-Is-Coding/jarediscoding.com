@@ -4,7 +4,7 @@ import FormRange from "react-bootstrap/FormRange"
 export class VoltageCalc extends Component {
     state = {
         voltage: 62.88,
-        result: "100.01% battery"
+        result: "100.01%"
     }
 
     quickVoltages = [
@@ -59,14 +59,14 @@ export class VoltageCalc extends Component {
             - 10
         )
 
-        this.setState({ result: `${calcPercentage.toFixed(2)}% battery` })
+        this.setState({ result: `${calcPercentage.toFixed(2)}%` })
     }
 
     render() {
         return (
             <>
                 <label>Result</label>
-                <code key="voltageResult">{this.state.result}</code>
+                <code style={{fontSize: "2em", padding: "10px"}} key="voltageResult">{this.state.result}</code>
                 
                 <label>Voltage</label>
                 <input className="half-width" key="voltage" type="number" step={0.01} value={this.state.voltage} onChange={e => this.setVoltage(e)}></input>
@@ -74,8 +74,8 @@ export class VoltageCalc extends Component {
 
                 <label>Quick Values</label>
                 <div className="flex-row flex-center">
-                    {this.quickVoltages.map((v) => (
-                        <button className="padded" onClick={e => this.setVoltage(v)}>{v.toFixed(1)}V</button>
+                    {this.quickVoltages.map((v, i) => (
+                        <button key={`voltageButton-${i}`} className="padded col-sm-2" onClick={e => this.setVoltage(v)}>{v.toFixed(1)}V</button>
                     ))}
                 </div>
 

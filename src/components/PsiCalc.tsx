@@ -69,7 +69,7 @@ export class PsiCalc extends Component {
         return (
             <>
                 <label>Result</label>
-                <code key="psiResult">{this.state.result}</code>
+                <code style={{fontSize: "2em", padding: "10px"}} key="psiResult">{this.state.result}</code>
                 
                 <label>Terrain</label>
                 <select className="half-width" key="psiTerrain" value={this.state.terrain} onChange={e => this.setTerrain(e)}>
@@ -89,8 +89,8 @@ export class PsiCalc extends Component {
 
                 <label>Quick Weights</label>
                 <div className="flex-row flex-center">
-                    {this.quickWeights.map((v) => (
-                        <button className="padded" onClick={e => this.setWeight(v)}>{v}lbs</button>
+                    {this.quickWeights.map((v, i) => (
+                        <button key={`weightButton-${i}`} className="padded col-sm-2" onClick={e => this.setWeight(v)}>{v}lbs</button>
                     ))}
                 </div>
             </>
