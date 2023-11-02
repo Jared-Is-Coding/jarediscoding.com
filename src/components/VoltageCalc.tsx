@@ -72,7 +72,7 @@ export class VoltageCalc extends Component {
                 <input className="half-width" key="voltage" type="number" step={0.01} value={this.state.voltage} onChange={e => this.setVoltage(e)}></input>
                 <FormRange className="half-width" key="voltageSlider" step="0.50" value={this.state.voltage} min={this.quickVoltages.at(0)} max={this.quickVoltages.at(this.quickVoltages.length - 1)} onChange={e => this.setVoltage(e)}></FormRange>
 
-                <label>Quick Values</label>
+                <label>Quick Voltage</label>
                 <div className="flex-row flex-center">
                     {this.quickVoltages.map((v, i) => (
                         <button key={`voltageButton-${i}`} className="padded col-sm-2" onClick={e => this.setVoltage(v)}>{v.toFixed(1)}V</button>

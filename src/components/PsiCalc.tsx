@@ -83,14 +83,14 @@ export class PsiCalc extends Component {
                     <option value="treaded">Treaded</option>
                 </select>
 
-                <label>Weight</label>
+                <label>Weight (lbs)</label>
                 <input className="half-width" key="psiWeight" type="number" min={100} max={250} step={1} value={this.state.weight} onChange={e => this.setWeight(e)}></input>
                 <FormRange className="half-width" key="psiWeightSlider" step="5" value={this.state.weight} min={this.quickWeights.at(0)} max={this.quickWeights.at(this.quickWeights.length - 1)} onChange={e => this.setWeight(e)}></FormRange>
 
-                <label>Quick Weights</label>
+                <label>Quick Weight (lbs)</label>
                 <div className="flex-row flex-center">
                     {this.quickWeights.map((v, i) => (
-                        <button key={`weightButton-${i}`} className="padded col-sm-2" onClick={e => this.setWeight(v)}>{v}lbs</button>
+                        <button key={`weightButton-${i}`} className="padded col-sm-2" onClick={e => this.setWeight(v)}>{v}</button>
                     ))}
                 </div>
             </>
