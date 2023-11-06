@@ -1,7 +1,6 @@
 import { HeadFC, Link, PageProps } from "gatsby"
 import * as React from "react"
 import { MetaData } from "../components/MetaData"
-import "../css/styles.scss"
 
 export const Head: HeadFC = () => (
     <>

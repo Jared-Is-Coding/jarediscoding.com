@@ -2,8 +2,16 @@
     "name": "jared-is-coding",
     "version": "1.0.0",
     "private": true,
-    "description": "jared-is-coding",
-    "author": "Jared H <jared@jarediscoding.com>",
+    "license": "Apache-2.0",
+    "description": "jarediscoding.com",
+    "author": "Jared Harrison <jared@jarediscoding.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Jared-Is-Coding/jarediscoding.com"
+    },
+    "bugs": {
+        "url": "https://github.com/Jared-Is-Coding/jarediscoding.com/issues"
+    },
     "keywords": [
         "gatsby"
     ],
@@ -17,32 +25,24 @@
     },
     "dependencies": {
         "bootstrap": "^5.3.2",
-        "gatsby": "^5.8.1",
+        "gatsby": "^5.12.4",
         "gatsby-plugin-netlify": "^5.1.0",
-        "gatsby-plugin-sass": "^6.8.0",
-        "gatsby-plugin-sitemap": "^6.8.0",
+        "gatsby-plugin-sass": "^6.12.3",
+        "gatsby-plugin-sitemap": "^6.12.3",
         "react": "^18.2.0",
         "react-bootstrap": "^2.9.1",
         "react-dom": "^18.2.0",
         "react-icons": "^4.8.0",
-        "sass": "^1.62.0"
+        "sass": "^1.69.5"
     },
     "devDependencies": {
         "@types/node": "^18.15.11",
         "@types/react": "^18.0.33",
         "@types/react-dom": "^18.0.11",
         "prettier": "^2.8.7",
-        "typescript": "^5.0.4"
+        "typescript": "^5.1.6"
     },
     "engines": {
         "node": ">=18.0.0"
-    },
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Jared-Is-Coding/jarediscoding.com"
-    },
-    "bugs": {
-        "url": "https://github.com/Jared-Is-Coding/jarediscoding.com/issues"
     }
 }

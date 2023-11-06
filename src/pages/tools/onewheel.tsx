@@ -4,8 +4,6 @@ import { Col, Container, Row } from "react-bootstrap"
 import { MetaData } from "../../components/MetaData"
 import { PsiCalc } from "../../components/PsiCalc"
 import { VoltageCalc } from "../../components/VoltageCalc"
-import "../../css/styles.scss"
-
 
 export const Head: HeadFC = () => (
     <>
