@@ -4,9 +4,9 @@ import FormRange from "react-bootstrap/FormRange"
 export class PsiCalc extends Component {
     state = {
         weight: 165,
-        terrain: "road",
+        terrain: "trail",
         tire: "slick",
-        result: "15 psi"
+        result: "17 psi"
     }
 
     quickWeights = [
@@ -73,8 +73,8 @@ export class PsiCalc extends Component {
                 
                 <label>Terrain</label>
                 <select className="half-width" key="psiTerrain" value={this.state.terrain} onChange={e => this.setTerrain(e)}>
-                    <option value="road">Road</option>
                     <option value="trail">Trail</option>
+                    <option value="road">Road</option>
                 </select>
 
                 <label>Tire</label>
