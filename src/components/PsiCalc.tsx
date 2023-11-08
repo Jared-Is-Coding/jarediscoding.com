@@ -6,7 +6,7 @@ export class PsiCalc extends Component {
         weight: 165,
         terrain: "trail",
         tire: "slick",
-        result: "17 psi"
+        result: "16 psi"
     }
 
     quickWeights = [
