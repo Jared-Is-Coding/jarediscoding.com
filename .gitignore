@@ -51,17 +51,18 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# dotenv environment variable files
+# Dotenv environment variable files
 .env*
 
-# gatsby files
+# Gatsby files
 .cache/
 public
 
-# build files
+# Build files
 gatsby-types.d.ts
 *.js
 !gatsby-node.js
+!static/js/*.js
 
 # Mac files
 .DS_Store
