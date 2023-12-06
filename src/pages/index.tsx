@@ -1,7 +1,7 @@
 import { type HeadFC, type PageProps } from "gatsby"
 import * as React from "react"
 import { Col, Container, Row } from "react-bootstrap"
-import { FaNodeJs, FaReact, FaWordpress } from "react-icons/fa"
+import { FaDiscord, FaNodeJs, FaReact, FaWordpress } from "react-icons/fa"
 import { SiExpress, SiGatsby, SiTypescript } from "react-icons/si"
 import { MetaData } from "../components/MetaData"
 import { SiteFooter } from "../components/SiteFooter"
@@ -14,7 +14,7 @@ export const Head: HeadFC = () => (
     </>
 )
 
-const allProjectData: projectData[] = [
+const currentProjectData: projectData[] = [
     {
         text: ["Elemental Bot for Discord"],
         image: "/images/projects/elementalbot.com/icon.png",
@@ -23,17 +23,17 @@ const allProjectData: projectData[] = [
         url: ["https://elementalbot.com/"],
         target: "_blank",
         position: "Owner",
-        technologies: <><FaNodeJs title="Node JS" />, <SiTypescript title="TypeScript" />, <SiExpress title="Express" /></>
+        technologies: <><FaNodeJs title="Node JS" /> <SiTypescript title="TypeScript" /> <SiExpress title="Express" /> <FaDiscord title="Discord" /></>
     },
     {
-        text: ["Red Barrels Games", "Support"],
+        text: ["Red Barrels Games"],
         image: "/images/projects/redbarrelsgames.com/icon.png",
         imageTitle: "Website Logo",
         imageAlt: "Logo icon for redbarrelsgames.com",
-        url: ["https://redbarrelsgames.com/","https://redbarrelsgames.com/support/"],
+        url: ["https://redbarrelsgames.com/"],
         target: "_blank",
         position: "Developer, Consultant",
-        technologies: <><FaWordpress title="WordPress" /></>
+        technologies: <><FaWordpress title="WordPress" /> <FaDiscord title="Discord" /></>
     },
     {
         text: ["French Creek Bible Conference"],
@@ -53,7 +53,7 @@ const allProjectData: projectData[] = [
         url: ["https://cherryparkband.com/"],
         target: "_blank",
         position: "Owner",
-        technologies: <><FaReact title="React" />, <SiGatsby title="Gatsby" /></>
+        technologies: <><FaReact title="React" /> <SiTypescript title="TypeScript" /> <SiGatsby title="Gatsby" /></>
     },
     {
         text: ["JaredIsCoding", "Tools"],
@@ -63,7 +63,7 @@ const allProjectData: projectData[] = [
         url: ["/", "/tools/"],
         target: "_self",
         position: "Owner",
-        technologies: <><FaReact title="React" />, <SiGatsby title="Gatsby" /></>
+        technologies: <><FaReact title="React" /> <SiTypescript title="TypeScript" /> <SiGatsby title="Gatsby" /></>
     }
 ]
 
@@ -137,7 +137,7 @@ const IndexPage: React.FC<PageProps> = () => {
 
                     <Row>
                         <Col xs={{span: 12}} md={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
-                            {allProjectData.map(mapProjectData)}
+                            {currentProjectData.map(mapProjectData)}
                         </Col>
                     </Row>
                 </Container>
