@@ -108,6 +108,10 @@ code {
 	display : flex;
 	flex-direction : row;
     flex-wrap: wrap;
+
+    :not(.card *):not(:last-of-type) {
+        padding-right: 15px;
+    }
 }
 
 .flex-row.halves .flex-col {
@@ -134,7 +138,7 @@ code {
 .row > * {
     padding: 5px;
 
-    .card {
+    .card:not(:last-of-type) {
         margin-bottom: 15px;
     }
 }

@@ -2,13 +2,13 @@ import React from "react"
 import { useMetaData } from "../hooks/useMetaData"
 import "../scss/styles.scss"
 
-type searchEngineOptimizationProps = {
+type MetaDataProps = {
     title?: string
     description?: string
     image?: string
 }
 
-export const MetaData = ({ title, description, image }: searchEngineOptimizationProps) => {
+export const MetaData = ({ title, description, image }: MetaDataProps) => {
     const { title: defaultTitle, description: defaultDescription, image: defaultImage, siteUrl } = useMetaData()
 
     return (
