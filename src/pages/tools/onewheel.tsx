@@ -1,6 +1,7 @@
 import { Link, type HeadFC, type PageProps } from "gatsby"
 import * as React from "react"
 import { Col, Container, Row } from "react-bootstrap"
+import { CellBasedVoltageCalc } from "../../components/CellBasedVoltageCalc"
 import { MetaData } from "../../components/MetaData"
 import { PsiCalc } from "../../components/PsiCalc"
 import { VoltageCalc } from "../../components/VoltageCalc"
@@ -24,6 +25,18 @@ const IndexPage: React.FC<PageProps> = () => {
                     <p className="flex-center">
                         <Link to="/tools/">ᐊ Tools</Link>
                     </p>
+
+                    <Row>
+                        <Col xs={{span: 12}} md={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
+                            <div className="flex-center flex-col card">
+                                <h2>
+                                    Battery Voltage to %<br />(Cell Voltage Based)
+                                </h2>
+                                
+                                <CellBasedVoltageCalc />
+                            </div>
+                        </Col>
+                    </Row>
 
                     <Row>
                         <Col xs={{span: 12}} md={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
