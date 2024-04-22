@@ -3,28 +3,27 @@ import FormRange from "react-bootstrap/FormRange"
 
 export class CellBasedVoltageCalc extends Component {
     state = {
-        voltage: 4.20,
+        voltage: 62.88,
         cellCount: 15,
+        cellVoltage: 4.192,
         result: "100.00%"
     }
 
     quickVoltages = [
-        2.70,
-        2.80,
-        2.90,
-        3.00,
-        3.10,
-        3.20,
-        3.30,
-        3.40,
-        3.50,
-        3.60,
-        3.70,
-        3.80,
-        3.90,
-        4.00,
-        4.10,
-        4.20
+        50.00,
+        55.00,
+        60.00,
+        65.00,
+        70.00,
+        75.00,
+        80.00,
+        85.00,
+        90.00,
+        95.00,
+        100.00,
+        105.00,
+        110.00,
+        115.00
     ]
 
     cellCounts = [
@@ -52,7 +51,7 @@ export class CellBasedVoltageCalc extends Component {
         
         if (this.state.voltage == value) return
         
-        this.setState({ voltage: value.toFixed(2) }, this.doCalculation)
+        this.setState({ voltage: value.toFixed(2), cellVoltage: (value / this.state.cellCount).toFixed(3) }, this.doCalculation)
     }
 
     setCellCount = (e: ChangeEvent<HTMLInputElement> | number) => {
@@ -66,28 +65,25 @@ export class CellBasedVoltageCalc extends Component {
         
         if (this.state.cellCount == value) return
         
-        this.setState({ cellCount: value.toFixed(0) }, this.doCalculation)
+        this.setState({ cellCount: value.toFixed(0), cellVoltage: (this.state.voltage / value).toFixed(3) }, this.doCalculation)
     }
 
     doCalculation = () => {
         const calcPercentage = (
             (
-                (
-                    535
-                    / (
-                        (
-                            4.2
-                            + Math.pow(36, (4.2 - this.state.voltage))
-                        )
-                        * (
-                            4.2
-                            / this.state.voltage
-                        )
+                535
+                / (
+                    (
+                        4.2
+                        + Math.pow(36, (4.2 - this.state.cellVoltage))
+                    )
+                    * (
+                        4.2
+                        / this.state.cellVoltage
                     )
                 )
-                - 2.8
             )
-            / this.state.cellCount
+            - 2.8
         )
 
         this.setState({ result: `${calcPercentage.toFixed(2)}%` })
@@ -106,7 +102,7 @@ export class CellBasedVoltageCalc extends Component {
                 <div className="flex-row flex-center">
                     <button key={`cellCountButton-xr`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>XR</button>
                     <button key={`cellCountButton-pint`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>Pint</button>
-                    <button key={`cellCountButton-pintx`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>Pint X</button>
+                    <button key={`cellCountButton-pintx`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>Px</button>
                     <button key={`cellCountButton-gt`} className="padded col-sm-2" onClick={e => this.setCellCount(18)}>GT</button>
                     <button key={`cellCountButton-adv`} className="padded col-sm-2" onClick={e => this.setCellCount(20)}>ADV</button>
                     <button key={`cellCountButton-gts`} className="padded col-sm-2" onClick={e => this.setCellCount(27)}>GT-S</button>
@@ -116,13 +112,13 @@ export class CellBasedVoltageCalc extends Component {
                 </div>
 
                 <label>Voltage</label>
-                <input className="half-width" key="voltage" type="number" step={0.05} value={this.state.voltage} onChange={e => this.setVoltage(e)}></input>
-                <FormRange className="half-width" key="voltageSlider" step="0.05" value={this.state.voltage} min={this.quickVoltages.at(0)} max={this.quickVoltages.at(this.quickVoltages.length - 1)} onChange={e => this.setVoltage(e)}></FormRange>
+                <input className="half-width" key="voltage" type="number" step={0.01} value={this.state.voltage} onChange={e => this.setVoltage(e)}></input>
+                <FormRange className="half-width" key="voltageSlider" step="0.50" value={this.state.voltage} min={this.quickVoltages.at(0)} max={this.quickVoltages.at(this.quickVoltages.length - 1)} onChange={e => this.setVoltage(e)}></FormRange>
 
                 <label>Quick Voltage</label>
                 <div className="flex-row flex-center">
                     {this.quickVoltages.map((v, i) => (
-                        <button key={`voltageButton-${i}`} className="padded col-sm-2" onClick={e => this.setVoltage(v)}>{v.toFixed(1)}V</button>
+                        <button key={`voltageButton-${i}`} className="padded col-sm-3" onClick={e => this.setVoltage(v)}>{v.toFixed(1)}V</button>
                     ))}
                 </div>
 

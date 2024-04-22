@@ -27,31 +27,17 @@ const IndexPage: React.FC<PageProps> = () => {
                     </p>
 
                     <Row>
-                        <Col xs={{span: 12}} md={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
-                            <div className="flex-center flex-col card">
-                                <h2>
-                                    Battery Voltage to %<br />(Cell Voltage Based)
-                                </h2>
-                                
-                                <CellBasedVoltageCalc />
-                            </div>
-                        </Col>
-                    </Row>
-
-                    <Row>
-                        <Col xs={{span: 12}} md={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
+                        <Col xs={{span: 12}} md={{span: 10, offset: 1}} lg={{span: 8, offset: 2}}>
                             <div className="flex-center flex-col card">
                                 <h2>
                                     Battery Voltage to %
                                 </h2>
                                 
-                                <VoltageCalc />
+                                <CellBasedVoltageCalc />
                             </div>
                         </Col>
-                    </Row>
 
-                    <Row>
-                        <Col xs={{span: 12}} md={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
+                        <Col xs={{span: 12}} md={{span: 10, offset: 1}} lg={{span: 8, offset: 2}}>
                             <div className="flex-center flex-col card">
                                 <h2>
                                     PSI Suggestion
