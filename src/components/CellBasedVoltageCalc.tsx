@@ -100,13 +100,13 @@ export class CellBasedVoltageCalc extends Component {
                 <code style={{fontSize: "2em", padding: "10px"}} key="voltageResult">{this.state.result}</code>
                 
                 <label>Cell Configuration</label>
-                <input className="half-width" key="voltage" type="number" step={1} value={this.state.cellCount} onChange={e => this.setCellCount(e)}></input>
+                <input className="half-width" key="cellCount" type="number" step={1} value={this.state.cellCount} onChange={e => this.setCellCount(e)}></input>
 
                 <label>Quick Cell Configuration</label>
                 <div className="flex-row flex-center">
                     <button key={`cellCountButton-xr`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>XR</button>
-                    <button key={`cellCountButton-xr`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>Pint</button>
-                    <button key={`cellCountButton-xr`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>Pint X</button>
+                    <button key={`cellCountButton-pint`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>Pint</button>
+                    <button key={`cellCountButton-pintx`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>Pint X</button>
                     <button key={`cellCountButton-gt`} className="padded col-sm-2" onClick={e => this.setCellCount(18)}>GT</button>
                     <button key={`cellCountButton-adv`} className="padded col-sm-2" onClick={e => this.setCellCount(20)}>ADV</button>
                     <button key={`cellCountButton-gts`} className="padded col-sm-2" onClick={e => this.setCellCount(27)}>GT-S</button>
