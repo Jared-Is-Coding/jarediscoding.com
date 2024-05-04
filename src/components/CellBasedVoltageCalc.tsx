@@ -1,12 +1,12 @@
-import React, { ChangeEvent, Component } from "react"
+import React, { ChangeEvent, Component, useState } from "react"
 import FormRange from "react-bootstrap/FormRange"
 
 export class CellBasedVoltageCalc extends Component {
     state = {
-        voltage: 62.88,
+        voltage: 56.35,
         cellCount: 15,
-        cellVoltage: 4.192,
-        result: "100.00%"
+        cellVoltage: 3.757,
+        result: "49.84%"
     }
 
     quickVoltages = [
@@ -27,17 +27,17 @@ export class CellBasedVoltageCalc extends Component {
     ]
 
     cellCounts = [
-        15,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27
+        [15, "(XR, Pint, Pint-X)"],
+        [18, "(GT)"],
+        [19, ""],
+        [20, "(ADV)"],
+        [21, ""],
+        [22, ""],
+        [23, ""],
+        [24, ""],
+        [25, ""],
+        [26, ""],
+        [27, "(GT-S)"]
     ]
 
     setVoltage = (e: ChangeEvent<HTMLInputElement> | number) => {
@@ -54,7 +54,7 @@ export class CellBasedVoltageCalc extends Component {
         this.setState({ voltage: value.toFixed(2), cellVoltage: (value / this.state.cellCount).toFixed(3) }, this.doCalculation)
     }
 
-    setCellCount = (e: ChangeEvent<HTMLInputElement> | number) => {
+    setCellCount = (e: ChangeEvent<HTMLSelectElement>) => {
         if (!e || (typeof e !== "number" && !e.target.value)) return
         
         const value = typeof e === "number"
@@ -89,6 +89,29 @@ export class CellBasedVoltageCalc extends Component {
         this.setState({ result: `${calcPercentage.toFixed(2)}%` })
     }
 
+    componentDidMount() {
+            const savedVoltage = localStorage.getItem("savedVoltage")
+            const savedCellCount = localStorage.getItem("savedCellCount")
+
+            if (savedVoltage && savedCellCount) {
+                this.setState({
+                    voltage: parseFloat(savedVoltage).toFixed(2),
+                    cellVoltage: (parseFloat(savedVoltage) / parseFloat(savedCellCount)).toFixed(3),
+                    cellCount: parseFloat(savedCellCount).toFixed(0)
+                }, this.doCalculation)
+            }
+    }
+
+    saveSetup = () => {
+        localStorage.setItem("savedVoltage", this.state.voltage.toString())
+        localStorage.setItem("savedCellCount", this.state.cellCount.toString())
+    }
+
+    clearSetup = () => {
+        localStorage.removeItem("savedVoltage")
+        localStorage.removeItem("savedCellCount")
+    }
+
     render() {
         return (
             <>
@@ -96,30 +119,28 @@ export class CellBasedVoltageCalc extends Component {
                 <code style={{fontSize: "2em", padding: "10px"}} key="voltageResult">{this.state.result}</code>
                 
                 <label>Cell Configuration</label>
-                <input className="half-width" key="cellCount" type="number" step={1} value={this.state.cellCount} onChange={e => this.setCellCount(e)}></input>
-
-                <label>Quick Cell Configuration</label>
-                <div className="flex-row flex-center">
-                    <button key={`cellCountButton-xr`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>XR</button>
-                    <button key={`cellCountButton-pint`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>Pint</button>
-                    <button key={`cellCountButton-pintx`} className="padded col-sm-2" onClick={e => this.setCellCount(15)}>Px</button>
-                    <button key={`cellCountButton-gt`} className="padded col-sm-2" onClick={e => this.setCellCount(18)}>GT</button>
-                    <button key={`cellCountButton-adv`} className="padded col-sm-2" onClick={e => this.setCellCount(20)}>ADV</button>
-                    <button key={`cellCountButton-gts`} className="padded col-sm-2" onClick={e => this.setCellCount(27)}>GT-S</button>
+                <select className="half-width" key="cellCount" value={this.state.cellCount} onChange={e => this.setCellCount(e)}>
                     {this.cellCounts.map((v, i) => (
-                        <button key={`cellCountButton-${i}`} className="padded col-sm-2" onClick={e => this.setCellCount(v)}>{v.toFixed(0)}s</button>
+                        <option key={`cellCount-` + v.at(0)} value={v.at(0)}>{v.at(0)}s {v.at(1)}</option>
                     ))}
-                </div>
+                </select>
 
                 <label>Voltage</label>
                 <input className="half-width" key="voltage" type="number" step={0.01} value={this.state.voltage} onChange={e => this.setVoltage(e)}></input>
-                <FormRange className="half-width" key="voltageSlider" step="0.50" value={this.state.voltage} min={this.quickVoltages.at(0)} max={this.quickVoltages.at(this.quickVoltages.length - 1)} onChange={e => this.setVoltage(e)}></FormRange>
+                <FormRange className="half-width" key="voltageSlider" step="0.05" value={this.state.voltage} min={this.quickVoltages.at(0)} max={this.quickVoltages.at(this.quickVoltages.length - 1)} onChange={e => this.setVoltage(e)}></FormRange>
 
                 <label>Quick Voltage</label>
-                <div className="flex-row flex-center">
+                <div className="flex-row flex-center full-width">
                     {this.quickVoltages.map((v, i) => (
                         <button key={`voltageButton-${i}`} className="padded col-sm-3" onClick={e => this.setVoltage(v)}>{v.toFixed(1)}V</button>
                     ))}
+                </div>
+
+                <br />
+                <label>Save current Cell Configuration and Voltage</label>
+                <div className="flex-row flex-center full-width">
+                    <button className="padded col-5" onClick={e => this.saveSetup()}>Save Setup</button>
+                    <button className="padded col-5" onClick={e => this.clearSetup()}>Clear Setup</button>
                 </div>
 
                 <br />
