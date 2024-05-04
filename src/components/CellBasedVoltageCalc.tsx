@@ -1,4 +1,5 @@
-import React, { ChangeEvent, Component, useState } from "react"
+import React, { ChangeEvent, Component } from "react"
+import { Alert } from "react-bootstrap"
 import FormRange from "react-bootstrap/FormRange"
 
 export class CellBasedVoltageCalc extends Component {
@@ -6,7 +7,9 @@ export class CellBasedVoltageCalc extends Component {
         voltage: 56.35,
         cellCount: 15,
         cellVoltage: 3.757,
-        result: "49.84%"
+        result: "49.84%",
+        showSaved: false,
+        showCleared: false
     }
 
     quickVoltages = [
@@ -40,7 +43,7 @@ export class CellBasedVoltageCalc extends Component {
         [27, "(GT-S)"]
     ]
 
-    setVoltage = (e: ChangeEvent<HTMLInputElement> | number) => {
+    setVoltage = (e: ChangeEvent<HTMLInputElement | HTMLButtonElement> | number) => {
         if (!e || (typeof e !== "number" && !e.target.value)) return
         
         const value = typeof e === "number"
@@ -55,13 +58,11 @@ export class CellBasedVoltageCalc extends Component {
     }
 
     setCellCount = (e: ChangeEvent<HTMLSelectElement>) => {
-        if (!e || (typeof e !== "number" && !e.target.value)) return
+        if (!e || !e.target.value) return
         
-        const value = typeof e === "number"
-            ? e
-            : e.target.value 
-                ? parseInt(e.target.value)
-                : 0
+        const value = e.target.value 
+            ? parseInt(e.target.value)
+            : 0
         
         if (this.state.cellCount == value) return
         
@@ -105,14 +106,24 @@ export class CellBasedVoltageCalc extends Component {
     saveSetup = () => {
         localStorage.setItem("savedVoltage", this.state.voltage.toString())
         localStorage.setItem("savedCellCount", this.state.cellCount.toString())
+
+        this.setState({ showSaved: true })
+        setTimeout(() => {
+            this.setState({ showSaved: false })
+        }, 3000)
     }
 
     clearSetup = () => {
         localStorage.removeItem("savedVoltage")
         localStorage.removeItem("savedCellCount")
+
+        this.setState({ showCleared: true })
+        setTimeout(() => {
+            this.setState({ showCleared: false })
+        }, 3000)
     }
 
-    render() {
+    render = () => {
         return (
             <>
                 <label>Result</label>
@@ -141,6 +152,13 @@ export class CellBasedVoltageCalc extends Component {
                 <div className="flex-row flex-center full-width">
                     <button className="padded col-5" onClick={e => this.saveSetup()}>Save Config</button>
                     <button className="padded col-5" onClick={e => this.clearSetup()}>Clear Config</button>
+
+                    <Alert key="savedAlert" className="floating" variant="dark" onClose={() => this.setState({ showSaved: false })} show={this.state.showSaved}>
+                        <p>Configuration saved</p>
+                    </Alert>
+                    <Alert key="clearedAlert" className="floating" variant="dark" onClose={() => this.setState({ showCleared: false })} show={this.state.showCleared}>
+                        <p>Configuration cleared</p>
+                    </Alert>
                 </div>
 
                 <br />
