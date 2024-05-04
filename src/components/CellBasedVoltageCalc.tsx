@@ -139,8 +139,8 @@ export class CellBasedVoltageCalc extends Component {
                 <br />
                 <label>Save current Cell Configuration and Voltage</label>
                 <div className="flex-row flex-center full-width">
-                    <button className="padded col-5" onClick={e => this.saveSetup()}>Save Setup</button>
-                    <button className="padded col-5" onClick={e => this.clearSetup()}>Clear Setup</button>
+                    <button className="padded col-5" onClick={e => this.saveSetup()}>Save Config</button>
+                    <button className="padded col-5" onClick={e => this.clearSetup()}>Clear Config</button>
                 </div>
 
                 <br />
