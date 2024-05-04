@@ -138,7 +138,7 @@ export class CellBasedVoltageCalc extends Component {
 
                 <label>Voltage</label>
                 <input className="half-width" key="voltage" type="number" step={0.01} value={this.state.voltage} onChange={e => this.setVoltage(e)}></input>
-                <FormRange className="half-width" key="voltageSlider" step="0.05" value={this.state.voltage} min={this.quickVoltages.at(0)} max={this.quickVoltages.at(this.quickVoltages.length - 1)} onChange={e => this.setVoltage(e)}></FormRange>
+                <FormRange className="half-width" key="voltageSlider" step="0.05" value={this.state.voltage} min={this.state.cellCount * 2.50} max={this.state.cellCount * 4.20} onChange={e => this.setVoltage(e)}></FormRange>
 
                 <label>Quick Voltage</label>
                 <div className="flex-row flex-center full-width">
