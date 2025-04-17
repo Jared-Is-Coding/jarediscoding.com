@@ -4,6 +4,7 @@ import { Col, Container, Row } from "react-bootstrap"
 import { FaDiscord, FaNodeJs, FaReact, FaWordpress } from "react-icons/fa"
 import { SiExpress, SiGatsby, SiTypescript } from "react-icons/si"
 import { MetaData } from "../components/MetaData"
+import { ProjectCard } from "../components/ProjectCard"
 import { SiteFooter } from "../components/SiteFooter"
 import { projectData } from "../types"
 
@@ -34,6 +35,16 @@ const currentProjectData: projectData[] = [
         target: "_blank",
         position: "Developer, Consultant",
         technologies: <><FaWordpress title="WordPress" /> <FaDiscord title="Discord" /></>
+    },
+    {
+        text: ["PubParts.xyz"],
+        image: "/images/projects/pubparts.xyz/icon.png",
+        imageTitle: "Website Logo",
+        imageAlt: "Logo icon for pubparts.xyz",
+        url: ["https://pubparts.xyz/"],
+        target: "_blank",
+        position: "Owner",
+        technologies: <><FaReact title="React" /> <SiTypescript title="TypeScript" /> <SiGatsby title="Gatsby" /></>
     },
     {
         text: ["French Creek Bible Conference"],
@@ -67,61 +78,6 @@ const currentProjectData: projectData[] = [
     }
 ]
 
-// TODO | This needs some cleanup
-type ProjectDataUrlProps = {
-    url: string
-    urlIndex: number
-    project: projectData
-}
-
-// TODO | This needs some cleanup
-const ProjectDataUrl = ({url, urlIndex, project}: ProjectDataUrlProps) => {
-    return (
-        <>
-            {urlIndex > 0 && <i> | </i>}
-            <a href={url} target={project.target}>
-                {project.text[urlIndex]}
-            </a>
-        </>
-    )
-}
-
-// TODO | This needs some cleanup
-const mapProjectData = (project: projectData, index: number) => (
-        <div className="card">
-            <div key={`project-main-${project.text.at(0)}-${index}`} className="flex-row flex-center">
-                {(project.image) &&
-                    <img key={`project-${project.text.at(0)}-${index}-image`} className="card-image flex-center" src={project.image} title={project.imageTitle} alt={project.imageAlt}></img>
-                }
-                
-                <span className="card-content">
-                    {project.url.map((url, urlIndex) => (
-                        // TODO | This needs some cleanup
-                        <ProjectDataUrl url={url} urlIndex={urlIndex} project={project} key={`project-${project.text.at(0)}-${index}-content-${url}`} />
-                    ))}
-                </span>
-            </div>
-    
-            {(project.position || project.technologies) &&
-                <div key={`project-info-${project.text.at(0)}-${index}`} className="flex-col flex-center">
-                    <p>
-                        {(project.technologies) &&
-                            project.technologies
-                        }
-    
-                        {(project.technologies && project.position) &&
-                            " | "
-                        }
-    
-                        {(project.position) &&
-                            project.position
-                        }
-                    </p>
-                </div>
-            }
-        </div>
-)
-
 const IndexPage: React.FC<PageProps> = () => {
     return (
         <>
@@ -137,7 +93,7 @@ const IndexPage: React.FC<PageProps> = () => {
 
                     <Row>
                         <Col xs={{span: 12}} md={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
-                            {currentProjectData.map(mapProjectData)}
+                            {currentProjectData.map(ProjectCard)}
                         </Col>
                     </Row>
                 </Container>

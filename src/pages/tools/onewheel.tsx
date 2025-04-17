@@ -4,7 +4,6 @@ import { Col, Container, Row } from "react-bootstrap"
 import { CellBasedVoltageCalc } from "../../components/CellBasedVoltageCalc"
 import { MetaData } from "../../components/MetaData"
 import { PsiCalc } from "../../components/PsiCalc"
-import { VoltageCalc } from "../../components/VoltageCalc"
 
 export const Head: HeadFC = () => (
     <>
