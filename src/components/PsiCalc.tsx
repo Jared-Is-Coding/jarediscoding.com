@@ -1,99 +1,96 @@
-import React, { ChangeEvent, Component } from "react"
-import FormRange from "react-bootstrap/FormRange"
+"use client"
 
-export class PsiCalc extends Component {
-    state = {
-        weight: 165,
-        terrain: "trail",
-        tire: "slick",
-        result: "16 psi"
-    }
+import { useState } from "react"
 
-    quickWeights = [
-        120,
-        130,
-        140,
-        150,
-        160,
-        170,
-        180,
-        190,
-        200,
-        210,
-        220,
-        230
-    ]
+const quickWeights = [120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230] as const
 
-    setWeight = (e: ChangeEvent<HTMLInputElement> | number) => {
-        if (!e || (typeof e !== "number" && !e.target.value)) return
+export function PsiCalc() {
+	const [weight, setWeight] = useState(165)
+	const [terrain, setTerrain] = useState("trail")
+	const [tire, setTire] = useState("slick")
 
-        const value = typeof e === "number"
-            ? e
-            : e.target.value 
-                ? parseInt(e.target.value)
-                : 0
+	// Compute recommendation directly during render
+	const calcPsi = weight / 10 - (terrain === "trail" ? 1 : 0) - (tire === "treaded" && terrain === "trail" ? 1 : 0)
+	const minMaxPsi = Math.max(Math.min(calcPsi, 25), 13)
+	const result = `${Math.round(minMaxPsi)} psi`
 
-        if (this.state.weight == value) return
-        
-        this.setState({ weight: value }, this.doCalculation)
-    }
+	const handleWeightChange = (val: number) => {
+		if (isNaN(val)) return
+		setWeight(val)
+	}
 
-    setTerrain = (e: ChangeEvent<HTMLSelectElement>) => {
-        if (!e.target.value) return
+	return (
+		<div className="calc-container">
+			<div className="calc-result-box">
+				<span className="calc-result-label">Recommended Tire Pressure</span>
+				<span className="calc-result-value">{result}</span>
+			</div>
 
-        if (this.state.terrain != e.target.value) {
-            this.setState({ terrain: e.target.value }, this.doCalculation)
-        }
-    }
+			<div className="form-group">
+				<label htmlFor="terrain-config">Terrain</label>
+				<select
+					id="terrain-config"
+					className="calc-select"
+					value={terrain}
+					onChange={(e) => setTerrain(e.target.value)}>
+					<option value="trail">Trail</option>
+					<option value="road">Road</option>
+				</select>
+			</div>
 
-    setTire = (e: ChangeEvent<HTMLSelectElement>) => {
-        if (!e.target.value) return
+			<div className="form-group">
+				<label htmlFor="tire-config">Tire Type</label>
+				<select id="tire-config" className="calc-select" value={tire} onChange={(e) => setTire(e.target.value)}>
+					<option value="slick">Slick</option>
+					<option value="treaded">Treaded</option>
+				</select>
+			</div>
 
-        if (this.state.tire != e.target.value) {
-            this.setState({ tire: e.target.value }, this.doCalculation)
-        }
-    }
+			<div className="form-group">
+				<label htmlFor="weight-input">Rider Weight (lbs)</label>
+				<input
+					id="weight-input"
+					type="number"
+					className="calc-input"
+					min="100"
+					max="250"
+					value={weight}
+					onChange={(e) => handleWeightChange(parseInt(e.target.value, 10))}
+				/>
 
-    doCalculation = () => {
-        const calcPsi = (
-            (this.state.weight / 10)
-            - (this.state.terrain == "trail" ? 1 : 0)
-            - (this.state.tire == "treaded" && this.state.terrain == "trail" ? 1 : 0)
-        )
-        const minMaxPsi = Math.max(Math.min(calcPsi, 25), 13)
+				<div className="calc-slider-container">
+					<input
+						type="range"
+						className="calc-slider"
+						step="5"
+						min={quickWeights[0]}
+						max={quickWeights[quickWeights.length - 1]}
+						value={weight}
+						onChange={(e) => handleWeightChange(parseInt(e.target.value, 10))}
+					/>
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "space-between",
+							fontSize: "0.75rem",
+							color: "var(--text-muted)",
+						}}>
+						<span>Min ({quickWeights[0]} lbs)</span>
+						<span>Max ({quickWeights[quickWeights.length - 1]} lbs)</span>
+					</div>
+				</div>
+			</div>
 
-        this.setState({ result: `${Math.round(minMaxPsi)} psi` })
-    }
-
-    render() {
-        return (
-            <>
-                <label>Result</label>
-                <code style={{fontSize: "2em", padding: "10px"}} key="psiResult">{this.state.result}</code>
-                
-                <label>Terrain</label>
-                <select className="half-width" key="psiTerrain" value={this.state.terrain} onChange={e => this.setTerrain(e)}>
-                    <option value="trail">Trail</option>
-                    <option value="road">Road</option>
-                </select>
-
-                <label>Tire</label>
-                <select className="half-width" key="psiTire" value={this.state.tire} onChange={e => this.setTire(e)}>
-                    <option value="slick">Slick</option>
-                    <option value="treaded">Treaded</option>
-                </select>
-
-                <label>Weight (lbs)</label>
-                <input className="half-width" key="psiWeight" type="number" min={100} max={250} step={1} value={this.state.weight} onChange={e => this.setWeight(e)}></input>
-                <FormRange className="half-width" key="psiWeightSlider" step="5" value={this.state.weight} min={this.quickWeights.at(0)} max={this.quickWeights.at(this.quickWeights.length - 1)} onChange={e => this.setWeight(e)}></FormRange>
-
-                <label>Quick Weight (lbs)</label>
-                <div className="flex-row flex-center">
-                    {this.quickWeights.map((v, i) => (
-                        <button key={`weightButton-${i}`} className="padded col-sm-2" onClick={e => this.setWeight(v)}>{v}</button>
-                    ))}
-                </div>
-            </>
-        )
-    }
+			<div className="form-group">
+				<label>Quick Weight Presets</label>
+				<div className="quick-grid">
+					{quickWeights.map((w) => (
+						<button key={w} type="button" className="quick-btn" onClick={() => handleWeightChange(w)}>
+							{w}
+						</button>
+					))}
+				</div>
+			</div>
+		</div>
+	)
 }

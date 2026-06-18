@@ -1,39 +1,46 @@
 {
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-      {
-        "name": "Gatsby develop",
-        "type": "node",
-        "request": "launch",
-        "program": "${workspaceRoot}/node_modules/.bin/gatsby",
-        "windows": {
-            // https://github.com/gatsbyjs/gatsby/issues/27355
-            "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby"
+        {
+            "name": "Next.js (server)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/next/dist/bin/next",
+            "args": [
+                "dev"
+            ],
+            "runtimeArgs": [
+                "--inspect"
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         },
-        "args": ["develop"],
-        "env": {
-          "PARCEL_WORKERS": "0",
-          "GATSBY_CPU_COUNT": "1",
-        },
-        "runtimeArgs": ["--nolazy"],
-        "console": "integratedTerminal"
-      },
-      {
-        "name": "Gatsby build",
-        "type": "node",
-        "request": "launch",
-        "program": "${workspaceRoot}/node_modules/.bin/gatsby",
-        "windows": {
-            // https://github.com/gatsbyjs/gatsby/issues/27355
-            "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby"
-        },
-        "args": ["build"],
-        "env": {
-          "PARCEL_WORKERS": "0",
-          "GATSBY_CPU_COUNT": "1",
-        },
-        "runtimeArgs": ["--nolazy"],
-        "console": "integratedTerminal"
-      }
+        {
+            "name": "Next.js (client)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}",
+            "resolveSourceMapLocations": [
+                "${workspaceFolder}/**",
+                "!**/node_modules/**",
+                "!**/.next/dev/server/chunks/**",
+                "!**/.next/dev/server/chunks/ssr/**"
+            ]
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Dev (full stack)",
+            "configurations": [
+                "Next.js (server)",
+                "Next.js (client)"
+            ],
+            "stopAll": true
+        }
     ]
-  }
+}

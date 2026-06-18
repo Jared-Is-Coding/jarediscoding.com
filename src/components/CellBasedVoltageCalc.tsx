@@ -1,184 +1,197 @@
-import React, { ChangeEvent, Component } from "react"
-import { Alert } from "react-bootstrap"
-import FormRange from "react-bootstrap/FormRange"
+"use client"
+
+import { useEffect, useState } from "react"
 
 const baseCellCount = 15
 const quickVoltageButtonCount = 12
 
-export class CellBasedVoltageCalc extends Component {
-    state = {
-        voltage: 56.35,
-        cellCount: baseCellCount,
-        cellVoltage: 3.757,
-        voltageMin: baseCellCount * 2.85,
-        voltageMax: baseCellCount * 4.20,
-        result: "49.84%",
-        showSaved: false,
-        showCleared: false
-    }
+const cellCounts = [
+	[15, "(XR, Pint, Pint-X)"],
+	[18, "(GT)"],
+	[19, ""],
+	[20, "(ADV)"],
+	[21, ""],
+	[22, ""],
+	[23, ""],
+	[24, ""],
+	[25, ""],
+	[26, ""],
+	[27, "(GT-S)"],
+] as const
 
-    cellCounts = [
-        [15, "(XR, Pint, Pint-X)"],
-        [18, "(GT)"],
-        [19, ""],
-        [20, "(ADV)"],
-        [21, ""],
-        [22, ""],
-        [23, ""],
-        [24, ""],
-        [25, ""],
-        [26, ""],
-        [27, "(GT-S)"]
-    ]
+export function CellBasedVoltageCalc() {
+	const [voltage, setVoltage] = useState(56.35)
+	const [cellCount, setCellCount] = useState(baseCellCount)
+	const [showSaved, setShowSaved] = useState(false)
+	const [showCleared, setShowCleared] = useState(false)
 
-    setVoltage = (e: ChangeEvent<HTMLInputElement | HTMLButtonElement> | number) => {
-        if (!e || (typeof e !== "number" && !e.target.value)) return
-        
-        const value = typeof e === "number"
-            ? e
-            : e.target.value 
-                ? parseFloat(e.target.value)
-                : 0
-        
-        if (this.state.voltage == value) return
-        
-        this.setState({
-            voltage: value.toFixed(2),
-            cellVoltage: (value / this.state.cellCount).toFixed(3)
-        }, this.doCalculation)
-    }
+	const voltageMin = cellCount * 2.85
+	const voltageMax = cellCount * 4.2
+	const cellVoltage = cellCount > 0 ? voltage / cellCount : 0
 
-    setCellCount = (e: ChangeEvent<HTMLSelectElement>) => {
-        if (!e || !e.target.value) return
-        
-        const value = e.target.value 
-            ? parseInt(e.target.value)
-            : 0
-        
-        if (this.state.cellCount == value) return
-        
-        this.setState({
-            cellCount: value.toFixed(0),
-            cellVoltage: (this.state.voltage / value).toFixed(3),
-            voltageMin: value * 2.85,
-            voltageMax: value * 4.20
-        }, this.doCalculation)
-    }
+	// Calculation formula
+	const calculatePercentage = (vCell: number) => {
+		if (vCell <= 0) return "0.00%"
+		const calcPercentage = 535 / ((4.2 + Math.pow(36, 4.2 - vCell)) * (4.2 / vCell)) - 2.8
+		const clamped = Math.max(Math.min(calcPercentage, 100), 0)
+		return `${clamped.toFixed(2)}%`
+	}
 
-    doCalculation = () => {
-        const calcPercentage = (
-            (
-                535
-                / (
-                    (
-                        4.2
-                        + Math.pow(36, (4.2 - this.state.cellVoltage))
-                    )
-                    * (
-                        4.2
-                        / this.state.cellVoltage
-                    )
-                )
-            )
-            - 2.8
-        )
+	// Calculate result directly during render
+	const result = calculatePercentage(cellVoltage)
 
-        this.setState({
-            result: `${calcPercentage.toFixed(2)}%`
-        })
-    }
+	// Load from localStorage on mount
+	useEffect(() => {
+		const savedVoltage = localStorage.getItem("savedVoltage")
+		const savedCellCount = localStorage.getItem("savedCellCount")
 
-    componentDidMount() {
-            const savedVoltage = localStorage.getItem("savedVoltage")
-            const savedCellCount = localStorage.getItem("savedCellCount")
+		if (savedVoltage && savedCellCount) {
+			const parsedVoltage = parseFloat(savedVoltage)
+			const parsedCellCount = parseInt(savedCellCount, 10)
+			if (!isNaN(parsedVoltage) && !isNaN(parsedCellCount)) {
+				setTimeout(() => {
+					setVoltage(parsedVoltage)
+					setCellCount(parsedCellCount)
+				}, 0)
+			}
+		}
+	}, [])
 
-            if (savedVoltage && savedCellCount) {
-                this.setState({
-                    voltage: parseFloat(savedVoltage).toFixed(2),
-                    cellVoltage: (parseFloat(savedVoltage) / parseInt(savedCellCount)).toFixed(3),
-                    cellCount: parseInt(savedCellCount),
-                    voltageMin: parseInt(savedCellCount) * 2.85,
-                    voltageMax: parseInt(savedCellCount) * 4.20
-                }, this.doCalculation)
-            }
-    }
+	const handleVoltageChange = (val: number) => {
+		if (isNaN(val)) return
+		setVoltage(parseFloat(val.toFixed(2)))
+	}
 
-    saveSetup = () => {
-        localStorage.setItem("savedVoltage", this.state.voltage.toString())
-        localStorage.setItem("savedCellCount", this.state.cellCount.toString())
+	const handleCellCountChange = (val: number) => {
+		setCellCount(val)
+	}
 
-        this.setState({ showSaved: true })
-        setTimeout(() => {
-            this.setState({ showSaved: false })
-        }, 3000)
-    }
+	const saveSetup = () => {
+		localStorage.setItem("savedVoltage", voltage.toString())
+		localStorage.setItem("savedCellCount", cellCount.toString())
+		setShowSaved(true)
+		const timer = setTimeout(() => setShowSaved(false), 3000)
+		return () => clearTimeout(timer)
+	}
 
-    clearSetup = () => {
-        localStorage.removeItem("savedVoltage")
-        localStorage.removeItem("savedCellCount")
+	const clearSetup = () => {
+		localStorage.removeItem("savedVoltage")
+		localStorage.removeItem("savedCellCount")
+		setShowCleared(true)
+		const timer = setTimeout(() => setShowCleared(false), 3000)
+		return () => clearTimeout(timer)
+	}
 
-        this.setState({ showCleared: true })
-        setTimeout(() => {
-            this.setState({ showCleared: false })
-        }, 3000)
-    }
+	return (
+		<div className="calc-container">
+			<div className="calc-result-box">
+				<span className="calc-result-label">Battery Level</span>
+				<span className="calc-result-value">{result}</span>
+			</div>
 
-    render = () => {
-        return (
-            <>
-                <label>Result</label>
-                <code style={{fontSize: "2em", padding: "10px"}} key="voltageResult">{this.state.result}</code>
-                
-                <label>Cell Configuration</label>
-                <select className="half-width" key="cellCount" value={this.state.cellCount} onChange={e => this.setCellCount(e)}>
-                    {this.cellCounts.map((v, i) => (
-                        <option key={`cellCount-` + v.at(0)} value={v.at(0)}>{v.at(0)}s {v.at(1)}</option>
-                    ))}
-                </select>
+			<div className="form-group">
+				<label htmlFor="cell-config">Cell Configuration</label>
+				<select
+					id="cell-config"
+					className="calc-select"
+					value={cellCount}
+					onChange={(e) => handleCellCountChange(parseInt(e.target.value, 10))}>
+					{cellCounts.map(([cells, label]) => (
+						<option key={cells} value={cells}>
+							{cells}s {label}
+						</option>
+					))}
+				</select>
+			</div>
 
-                <label>Voltage</label>
-                <input className="half-width" key="voltage" type="number" step={0.01} value={this.state.voltage} onChange={e => this.setVoltage(e)}></input>
-                <FormRange className="half-width" key="voltageSlider" step="0.05" value={this.state.voltage} min={this.state.cellCount * 2.85} max={this.state.cellCount * 4.20} onChange={e => this.setVoltage(e)}></FormRange>
+			<div className="form-group">
+				<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+					<label htmlFor="voltage-input">Voltage (V)</label>
+					<span style={{ fontSize: "0.85rem", color: "var(--text-slate)" }}>
+						Cell Avg: <code style={{ color: "var(--accent-teal)" }}>{cellVoltage.toFixed(3)}V</code>
+					</span>
+				</div>
 
-                <label>Quick Voltage</label>
-                <div className="flex-row flex-center full-width">
-                    {
-                        [...Array(quickVoltageButtonCount)].map((v, i) => {
-                            const buttonVoltage = Math.round(
-                                this.state.voltageMin
-                                + (
-                                    (this.state.voltageMax - this.state.voltageMin)
-                                    / quickVoltageButtonCount
-                                    * (i + 1)
-                                )
-                            )
+				<input
+					id="voltage-input"
+					type="number"
+					className="calc-input"
+					step="0.01"
+					min={voltageMin.toFixed(2)}
+					max={voltageMax.toFixed(2)}
+					value={voltage}
+					onChange={(e) => handleVoltageChange(parseFloat(e.target.value))}
+				/>
 
-                            return (
-                                <button key={`voltageButton-${i}`} className="padded col-sm-3" onClick={e => this.setVoltage(buttonVoltage)}>
-                                    {buttonVoltage.toFixed(2)}V
-                                </button>
-                            )
-                        })
-                    }
-                </div>
+				<div className="calc-slider-container">
+					<input
+						type="range"
+						className="calc-slider"
+						step="0.05"
+						min={voltageMin}
+						max={voltageMax}
+						value={voltage}
+						onChange={(e) => handleVoltageChange(parseFloat(e.target.value))}
+					/>
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "space-between",
+							fontSize: "0.75rem",
+							color: "var(--text-muted)",
+						}}>
+						<span>Min ({voltageMin.toFixed(1)}V)</span>
+						<span>Max ({voltageMax.toFixed(1)}V)</span>
+					</div>
+				</div>
+			</div>
 
-                <br />
-                <label>Save current Cell Configuration and Voltage</label>
-                <div className="flex-row flex-center full-width">
-                    <button className="padded col-5" onClick={e => this.saveSetup()}>Save Config</button>
-                    <button className="padded col-5" onClick={e => this.clearSetup()}>Clear Config</button>
+			<div className="form-group">
+				<label>Quick Voltage Presets</label>
+				<div className="quick-grid">
+					{[...Array(quickVoltageButtonCount)].map((_, i) => {
+						const buttonVoltage = Math.round(
+							voltageMin + ((voltageMax - voltageMin) / quickVoltageButtonCount) * (i + 1),
+						)
+						return (
+							<button
+								key={i}
+								type="button"
+								className="quick-btn"
+								onClick={() => handleVoltageChange(buttonVoltage)}>
+								{buttonVoltage.toFixed(1)}V
+							</button>
+						)
+					})}
+				</div>
+			</div>
 
-                    <Alert key="savedAlert" className="floating" variant="dark" onClose={() => this.setState({ showSaved: false })} show={this.state.showSaved}>
-                        <p>Configuration saved</p>
-                    </Alert>
-                    <Alert key="clearedAlert" className="floating" variant="dark" onClose={() => this.setState({ showCleared: false })} show={this.state.showCleared}>
-                        <p>Configuration cleared</p>
-                    </Alert>
-                </div>
+			<div className="action-row">
+				<button type="button" className="action-btn primary" onClick={saveSetup}>
+					Save Setup
+				</button>
+				<button type="button" className="action-btn" onClick={clearSetup}>
+					Clear Setup
+				</button>
+			</div>
 
-                <br />
-                <i>Formula by <a href="https://github.com/biell" target="_blank">biell</a></i>
-            </>
-        )
-    }
+			{showSaved && (
+				<div className="toast-alert">
+					<p>✓ Configuration saved locally</p>
+				</div>
+			)}
+			{showCleared && (
+				<div className="toast-alert" style={{ borderColor: "#ef4444" }}>
+					<p style={{ color: "#ef4444" }}>✗ Configuration cleared</p>
+				</div>
+			)}
+
+			<p className="formula-credit">
+				Formula by{" "}
+				<a href="https://github.com/biell" target="_blank" rel="noopener noreferrer">
+					biell
+				</a>
+			</p>
+		</div>
+	)
 }
