@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
 	title: "Tools | Jared Is Coding",
@@ -22,9 +23,22 @@ export default function ToolsPage() {
 							based on your weight and riding style.
 						</p>
 					</div>
-					<a href="/tools/onewheel" className="tool-button">
+					<Link href="/tools/onewheel" className="tool-button">
 						Open Tools →
-					</a>
+					</Link>
+				</div>
+
+				<div className="glass-card tool-card">
+					<div>
+						<h3>Digital Bubble Level</h3>
+						<p>
+							Precision spirit level and inclinometer using your device&apos;s gyroscope sensors to check
+							surface level, plumb edges, and measure angles with real-time feedback.
+						</p>
+					</div>
+					<Link href="/tools/level" className="tool-button">
+						Open Level →
+					</Link>
 				</div>
 			</div>
 		</div>
